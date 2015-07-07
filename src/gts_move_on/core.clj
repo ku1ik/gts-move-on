@@ -20,7 +20,7 @@
                      (html/set-attr :href (str "https://gitlab.com/" gitlab-path))))
 
 (defn repo-handler [project repository]
-  (if-let [gitlab-path (get mapping (str project "/" repository))]
+  (when-let [gitlab-path (get mapping (str project "/" repository))]
     (template gitlab-path)))
 
 (defroutes app
