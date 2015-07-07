@@ -9,4 +9,4 @@
                  [enlive "1.1.5"]
                  [org.clojure/data.json "0.2.6"]]
   :plugins [[lein-ring "0.9.6"]]
-  :ring {:handler gts-move-on.core/handler})
+  :ring {:handler gts-move-on.core/app})

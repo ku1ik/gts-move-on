@@ -2,9 +2,6 @@
   (:require [compojure.core :refer [GET defroutes]]
             [compojure.route :as route]
             [clojure.data.json :as json]
-            [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.content-type :refer [wrap-content-type]]
-            [ring.middleware.not-modified :refer [wrap-not-modified]]
             [net.cgrand.enlive-html :as html]
             [clojure.java.io :as io]))
 
@@ -26,10 +23,5 @@
 (defroutes app
   (GET "/" [] (template nil))
   (GET "/:project/:repository*" [project repository] (repo-handler project repository))
+  (route/resources "/")
   (route/not-found (template nil)))
-
-(def handler
-  (-> app
-      (wrap-resource "public")
-      (wrap-content-type)
-      (wrap-not-modified)))
